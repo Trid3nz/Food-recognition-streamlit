@@ -8,6 +8,8 @@ from ultralytics import YOLO
 import cv2
 import numpy as np
 from nutrition_data import nutrition
+from huggingface_hub import hf_hub_download
+HF_REPO_ID = "Trid3nz/indonesian-food-models"
 
 # Page configuration
 st.set_page_config(
@@ -30,6 +32,20 @@ transform = transforms.Compose([
     transforms.Normalize([0.485, 0.456, 0.406],
                          [0.229, 0.224, 0.225])
 ])
+
+@st.cache_resource
+def download_from_huggingface(filename):
+    """Download model from Hugging Face Hub"""
+    try:
+        model_path = hf_hub_download(
+            repo_id=HF_REPO_ID,
+            filename=filename,
+            cache_dir="./models"
+        )
+        return model_path
+    except Exception as e:
+        st.error(f"Error downloading {filename}: {e}")
+        return None
 
 # Load models (cache them to avoid reloading)
 @st.cache_resource
