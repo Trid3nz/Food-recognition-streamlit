@@ -77,7 +77,7 @@ _Yes, we know Pizza and Burger aren't Indonesian... but they're honorary members
 
 ```bash
 # Clone this repository
-git clone https://github.com/YOUR_USERNAME/indonesian-food-recognition.git
+git clone https://github.com/Trid3nz/Food-recognition-streamlit.git
 cd indonesian-food-recognition
 
 # Create virtual environment
